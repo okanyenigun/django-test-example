@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?{% now 'U' %}" />
+    <title>Testing Example</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left">
+        <form method="POST">
+          {% csrf_token %} {{form}}
+          <button class="btn btn-success" name="submit">Add</button>
+        </form>
+      </div>
+      <div class="right">
+        <table class="table">
+          <thead>
+            <tr>
+              <td>Home Team</td>
+              <td>Away Team</td>
+              <td>Home Score</td>
+              <td>Away Score</td>
+              <td>Match Result</td>
+              <td>Man of the Match</td>
+            </tr>
+          </thead>
+          <tbody>
+            {% for g in games %}
+            <tr>
+              <td>{{g.home_team}}</td>
+              <td>{{g.away_team}}</td>
+              <td>{{g.home_score}}</td>
+              <td>{{g.away_score}}</td>
+              <td>{{g.result}}</td>
+              <td>{{g.mom}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
